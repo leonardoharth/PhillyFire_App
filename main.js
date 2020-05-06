@@ -7,11 +7,13 @@ center: [-75.165222, 39.952583],
 zoom: 10
 });
 
+var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
+var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
 
-
+console.log(url1);
 map.on('load', function() {
-          var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
-          var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
+          //var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
+          //var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
 map.addSource('data', {
           type: 'geojson',
           data: url1
@@ -90,8 +92,8 @@ map.addLayer({
         map.getCanvas().style.cursor = '';
     });
 
-  var myFeatures = map.querySourceFeatures('engines');
-  console.log(myFeatures);
+  //var myFeatures = map.querySourceFeatures('engines');
+  //console.log(myFeatures);
 
     /* ============= User Interactivity ============== */
     /* ============= Interactive Elements setup ============== */
