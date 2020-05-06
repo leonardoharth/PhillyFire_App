@@ -10,9 +10,11 @@ zoom: 10
 
 
 map.on('load', function() {
+          var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
+          var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
 map.addSource('data', {
           type: 'geojson',
-          data: "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson"
+          data: url1
         });
 
 map.addLayer({
@@ -32,12 +34,35 @@ map.addLayer({
          }
           });
 
+          map.addSource('engines', {
+                    type: 'geojson',
+                    data: url2
+                  });
+
+          map.addLayer({
+                    "id":"engines",
+                    "type":"fill",
+                    'source': 'engines',
+                    // 'source-layer':'fishJan-bhb97l',
+                    'layout': {
+                      'visibility': 'visible'},
+                      paint: {
+                       // color circles by year_built_copy, using a match expression
+                       'fill-color': '#888888',
+                       'fill-opacity': 0.4,
+                       'fill-outline-color': 'black'
+                   },
+                   'filter': ['==', '$type', 'Polygon']
+                    });
+
 });
 
 // inspect a unit (point) on click
     // When a click event occurs on a feature in the unclustered-point layer, open a popup at the
     // location of the feature, with description HTML from its properties.
     map.on('click', 'data', function (e) {
+           map.flyTo({ center: e.features[0].geometry.coordinates});
+
            var coordinates = e.features[0].geometry.coordinates.slice();
            var description = "<b>Hydrant ID:</b> " + e.features[0].properties.HYDRANTNUM;
            description += "<br><b>Engine number:</b> " + e.features[0].properties.ENGINE_NUM;
@@ -65,6 +90,8 @@ map.addLayer({
         map.getCanvas().style.cursor = '';
     });
 
+  var myFeatures = map.querySourceFeatures('engines');
+  console.log(myFeatures);
 
     /* ============= User Interactivity ============== */
     /* ============= Interactive Elements setup ============== */
