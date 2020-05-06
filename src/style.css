@@ -8,7 +8,7 @@ body {
   height: 40px;
   top: 0;
   text-align: center;
-  background-color: black;
+  background-color: #756bb1;
   color: white;
   padding-top: 9px;
   font-weight: bold;
@@ -75,4 +75,39 @@ body {
 .row > div {
   background: lightgrey;
   border: 1px solid grey;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #756bb1;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #756bb1;
+  cursor: pointer;
 }

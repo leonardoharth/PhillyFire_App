@@ -10,23 +10,70 @@ zoom: 10
 
 
 map.on('load', function() {
-map.addSource('my', {
+map.addSource('data', {
           type: 'geojson',
-          data: "https://raw.githubusercontent.com/liziqun/MUSA_800/master/priority_score.geojson"
+          data: "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson"
         });
 
 map.addLayer({
-          "id":"uniqueID",
-          "type":"fill",
-          'source': 'my',
+          "id":"data",
+          "type":"circle",
+          'source': 'data',
           // 'source-layer':'fishJan-bhb97l',
           'layout': {
             'visibility': 'visible'},
-          'paint':{
-            'fill-color':'yellow',
-            'fill-opacity': 0.3,
-            'fill-outline-color':'red',
-          }
+            paint: {
+             // color circles by year_built_copy, using a match expression
+             "circle-color": "#756bb1",
+             "circle-radius": 2,
+             "circle-stroke-width": 0.6,
+             "circle-stroke-color": "#fff",
+             "circle-opacity":0.3
+         }
           });
 
 });
+
+// inspect a unit (point) on click
+    // When a click event occurs on a feature in the unclustered-point layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', 'data', function (e) {
+           var coordinates = e.features[0].geometry.coordinates.slice();
+           var description = "<b>Hydrant ID:</b> " + e.features[0].properties.HYDRANTNUM;
+           description += "<br><b>Engine number:</b> " + e.features[0].properties.ENGINE_NUM;
+           description += "<br><b>Year installed:</b> " + e.features[0].properties.YEAR_INSTA;
+           description += "<br><b>Date of last inspection:</b> " + e.features[0].properties.DATEOFLAST;
+
+           //add other elements/ fix into scrollable menu
+
+           // Ensure that if the map is zoomed out such that multiple copies of the feature are visible,
+           // the popup appears over the copy being pointed to.
+           while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+               coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+           }
+
+           new mapboxgl.Popup()
+               .setLngLat(coordinates)
+               .setHTML(description)
+               .addTo(map);
+    });
+
+    map.on('mouseenter', 'data', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'data', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+
+    /* ============= User Interactivity ============== */
+    /* ============= Interactive Elements setup ============== */
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+};
+
+  /* ============= Interactive Elements setup ============== */
