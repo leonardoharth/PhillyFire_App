@@ -9,8 +9,38 @@ zoom: 10
 
 var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
 var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
+/*
+map.on('load',() => {
+  fetch(url1).then(response => response.json())
+    .then((data) => {
+      map.addSource("hydrants", {
+        type: 'geojson',
+        data: url1
+      });
+      map.addLayer({
+                "id":"hydrantPoints",
+                "type":"circle",
+                'source':'hydrants',
+                // 'source-layer':'fishJan-bhb97l',
+                'layout': {
+                  'visibility': 'visible'},
+                  paint: {
+                   // color circles by year_built_copy, using a match expression
+                   "circle-color": "#756bb1",
+                   "circle-radius": 2,
+                   "circle-stroke-width": 0.6,
+                   "circle-stroke-color": "#fff",
+                   "circle-opacity":0.3
+               }
+                });
 
-console.log(url1);
+
+    });
+      });
+
+*/
+
+
 map.on('load', function() {
           //var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
           //var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
