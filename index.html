@@ -34,22 +34,24 @@
 	<div class="sidebar">
 		<!-- Start sidebar options section -->
 		<div id="threshold" class="w-100">
-			<h5>Customize hydrant inspection prioritization score</h5>
-			<p><b>Factors to prioritize:</b></p>
+			<h5>Build hydrant inspection prioritization score</h5>
+			<div class="container">
+				<p><b>Factors to prioritize:</b></p>
 			 <!-- BE CAREFUL WITH CHECKBOXES! The jQuery API handles checkboxes differently than other inputs! -->
-		     <label id="checkbox-label1" for="cbox-input1">Fire Risk</label>
-		     <input type="checkbox" id="cbox-input1">
-		     <br>
-		     <label id="checkbox-label2" for="cbox-input2">Industrial Parcels</label>
-		     <input type="checkbox" id="cbox-input2">
-		     <br>
-		     <label id="checkbox-label3" for="cbox-input3">Social Impact</label>
-		     <input type="checkbox" id="cbox-input3">
-		     <br>
-		     <label id="checkbox-label4" for="cbox-input4">Hydrant Age</label>
-		     <input type="checkbox" id="cbox-input4">
+			 
+			     <label id="checkbox-label1" for="cbox-input1">Fire Risk</label>
+			     <input type="checkbox" id="cbox-input1">
+			     <br>
+			     <label id="checkbox-label2" for="cbox-input2">Industrial Parcels</label>
+			     <input type="checkbox" id="cbox-input2">
+			     <br>
+			     <label id="checkbox-label3" for="cbox-input3">Social Impact</label>
+			     <input type="checkbox" id="cbox-input3">
+			     <br>
+			     <label id="checkbox-label4" for="cbox-input4">Hydrant Age</label>
+			     <input type="checkbox" id="cbox-input4">
+			</div>
 		 	<!-- End of score filters -->
-			<br>
 			<br>
 			<h5>Filter Hydrants</h5>
 			<!-- Begin of hydrany filter -->
@@ -71,7 +73,6 @@
 				<input type="checkbox" id="cbox-input6">
 	      		<input id="text-input1" class="input-text" type="text" placeholder="Engine Num">
 	      	</div>
-      		<br>
 			<br>
 			<!-- Buttons to update and reset map -->
 		    <button id="plotbutton" style="margin-bottom:20px">Update map</button>
