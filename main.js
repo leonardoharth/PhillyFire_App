@@ -51,6 +51,27 @@ map.on('load', function() {
             data: hydrants
   });
 
+  map.addSource('engines', {
+                    type: 'geojson',
+                    data: engines
+  });
+
+  map.addLayer({
+                "id":"engines",
+                "type":"fill",
+                'source': 'engines',
+                // 'source-layer':'fishJan-bhb97l',
+                'layout': {
+                  'visibility': 'visible'},
+                paint: {
+                   // color circles by year_built_copy, using a match expression
+                   'fill-color': 'pink',
+                   'fill-opacity': 0.2,
+                   'fill-outline-color': 'black'
+               },
+               'filter': ['==', '$type', 'Polygon']
+  });
+
   // Add hydrant layer 
   map.addLayer({
             "id":"hydrants",
@@ -68,27 +89,6 @@ map.on('load', function() {
              "circle-opacity":0.3
             }
   });
-
-  map.addSource('engines', {
-                    type: 'geojson',
-                    data: engines
-  });
-
-  // map.addLayer({
-  //               "id":"engines",
-  //               "type":"fill",
-  //               'source': 'engines',
-  //               // 'source-layer':'fishJan-bhb97l',
-  //               'layout': {
-  //                 'visibility': 'visible'},
-  //                 paint: {
-  //                  // color circles by year_built_copy, using a match expression
-  //                  'fill-color': '#888888',
-  //                  'fill-opacity': 0.4,
-  //                  'fill-outline-color': 'black'
-  //              },
-  //              'filter': ['==', '$type', 'Polygon']
-  //  });
 
 });
 
