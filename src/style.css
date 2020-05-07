@@ -58,7 +58,7 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-.sidebar nav.navbar-default {
+.navbar-default {
     border: 0;
     border-radius: 0;
     background-color: #fff;
@@ -71,6 +71,7 @@ body {
     font-size: 14px;
     font-weight: bold;
 }
+
 
 .row > div {
   background: lightgrey;
@@ -130,4 +131,50 @@ padding: 10px;
 box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 border-radius: 3px;
 width: 120px;
+}
+
+button {
+  background-color: #756bb1; 
+  border-radius: 5px;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* CSS FOR LEGEND ON MAP */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+#features {
+  bottom: 10px;
+  left: 350px;
+  height: 40px;
+  margin-top: 20px;
+  width: 400px;
+}
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 200px;
+  margin-bottom: 40px;
+  width: 150px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
 }
