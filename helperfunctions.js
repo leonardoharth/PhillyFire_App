@@ -60,7 +60,10 @@ var inputToCombi = function(){
 
 /* ============= Filters  ============== */
 var filterByScores = function(c,s){
-  map.setFilter('hydrants', ['==', ['get', c], s]);
+  // if combination is "0000", don't filter 
+  if(c!="0000"){
+    map.setFilter('hydrants', ['==', ['get', c], s]);
+  }
 }
 
 var filterByEngine = function(eng){
@@ -68,10 +71,14 @@ var filterByEngine = function(eng){
 }
 
 var filterByBoth = function(c,s, eng){
-  map.setFilter('hydrants', ["all",
-    ['==', ['get', c], s],
-    ['==', ['get', 'ENGINE_NUM'], eng]
- ]);
+  if (c!="0000"){
+    map.setFilter('hydrants', ["all",
+      ['==', ['get', c], s],
+      ['==', ['get', 'ENGINE_NUM'], eng]
+   ]);
+  }else{ // if combi is 0000, don't filter by scores
+    filterByEngine(eng);
+  }
 }
 
 var filterMap = function(c, includeScore, includeEngine){
