@@ -67,7 +67,26 @@ var filterByEngine = function(eng){
    map.setFilter('hydrants', ['==', ['get', 'ENGINE_NUM'], eng]);
 }
 
+var filterByBoth = function(c,s, eng){
+  map.setFilter('hydrants', ["all",
+    ['==', ['get', c], s],
+    ['==', ['get', 'ENGINE_NUM'], eng]
+ ]);
+}
 
+var filterMap = function(c, includeScore, includeEngine){
+  var s = Number(appState.scoreFilter);
+  var eng = Number(appState.engineFilter)
+  if(includeScore){
+    if (includeEngine){
+      filterByBoth(c,s,eng)
+    }else{
+      filterByScores(c,s)
+    }
+  }else if(includeEngine){
+    filterByEngine(eng)
+  }
+}
 /* ============= Update map ============== */
 
 var updateMap = function(combination){
@@ -165,20 +184,15 @@ var resetValues = function(){
 
 /* ============= Button Clicks ============== */
 
+// everytime a button is clicked, the inputs of the side bar are read 
+// appstate is updated 
+// the filter is run 
 var buttonClick = function(){
   $('#plotbutton').click(function(e) {
     readInput(); //updates appstate
     var c =inputToCombi();
     updateMap(c);  
-    if (appState.filter_on){
-      //filter by score 
-      var s = Number(appState.scoreFilter);
-      filterByScores(c,s);
-    };
-    if (appState.eng_filter_on){
-      var engine = Number(appState.engineFilter)
-      filterByEngine(engine)
-    }
+    filterMap(c, appState.filter_on, appState.eng_filter_on);
   });
 
   $('#resetbutton').click(function(e) {
