@@ -65,8 +65,8 @@ var inputToCombi = function(){
 
 //Zoom in function
 var zoomIn=function(eng){
-  if (eng==e.features[0].properties.ENGINE_NUM){
-var coordinates = e.features[0].geometry.coordinates;
+  if (eng==e.target.features[0].properties.ENGINE_NUM){
+var coordinates = e.target.features[0].geometry.coordinates;
 var bounds = coordinates[0].reduce(function(bounds, coord) {
 return bounds.extend(coord);
  }, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
@@ -106,11 +106,13 @@ var filterMap = function(c, includeScore, includeEngine){
   if(includeScore){
     if (includeEngine){
       filterByBoth(c,s,eng);
+      //zoomIn(eng);
     }else{
       filterByScores(c,s);
     }
   }else if(includeEngine){
     filterByEngine(eng);
+    //zoomIn(eng);
   }
 };
 /* ============= Update map ============== */
