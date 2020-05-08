@@ -56,7 +56,7 @@ map.on('load', function() {
     legend.appendChild(item);
   }
 
-  //Add source: hydrant points
+  //Add source: hydrant (points）
   map.addSource('hydrants', {
             type: 'geojson',
             data: hydrants
@@ -67,7 +67,7 @@ map.on('load', function() {
                     data: engines
   });
 
-  // Add engine layer
+  // Add engine layer (polygon)
   map.addLayer({
                 "id":"engines",
                 "type":"fill",
@@ -81,6 +81,7 @@ map.on('load', function() {
                //,'filter': ['==', '$type', 'Polygon']
   });
 
+// Add engine border layer (line)
   map.addLayer({
 'id': 'engines-borders',
 'type': 'line',
@@ -92,16 +93,14 @@ map.on('load', function() {
 }
 });
 
-  // Add hydrant layer
+  // Add hydrant layer (points)
   map.addLayer({
             "id":"hydrants",
             "type":"circle",
             'source': 'hydrants',
-            // 'source-layer':'fishJan-bhb97l',
             //'layout': {
               //'visibility': 'visible'},
             paint: {
-             // initially just colour all the same (base map)
              "circle-color": "#756bb1",
              "circle-radius": 3,
              "circle-stroke-width": 0.5,
@@ -160,15 +159,11 @@ map.on('click', 'hydrants', function (e) {
   description += "<br><b>Engine number:</b> " + e.features[0].properties.ENGINE_NUM;
   description += "<br><b>Year installed:</b> " + e.features[0].properties.YEAR_INSTA;
   description += "<br><b>Date of last inspection:</b> " + e.features[0].properties.DATEOFLAST;
-
-           //add other elements/ fix into scrollable menu
-
            // Ensure that if the map is zoomed out such that multiple copies of the feature are visible,
            // the popup appears over the copy being pointed to.
   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
    }
-
   new mapboxgl.Popup()
      .setLngLat(coordinates)
      .setHTML(description)
