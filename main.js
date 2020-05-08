@@ -3,8 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoibmp4aW5yYW4iLCJhIjoiY2s4dWxxaHR6MGNobDNtcDZzY
 map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v10',
-  center: [-75.155802, 39.995313],
-  zoom: 10
+  center: [ -75.135791, 40.008376],
+  zoom: 10.3
 });
 
 
@@ -27,10 +27,19 @@ var engines;
     });
 
 /* ============= Legend setup ============== */
-var layers = ['Top Priority', '2', '3', '4', '5', '6', '7', '8', '9', 'Lowest Priority'];
+var layers = ['Top Priority (1)', '2', '3', '4', '5', '6', '7', '8', '9', 'Lowest Priority (10)'];
 var colors = ['#ffffcc','#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026',  '#420D09'];
-             
 /* ============= MAPS============== */
+
+var hoveredStateId = null;
+
+// opacity slider function
+var slider_map = document.getElementById('slider_map');
+var sliderValue_map = document.getElementById('slider-value_map');
+var slider_map2 = document.getElementById('slider_map2');
+var sliderValue_map2 = document.getElementById('slider-value_map2');
+
+//Map overall
 map.on('load', function() {
   for (i = 0; i < layers.length; i++) {
     var layer = layers[i];
@@ -46,49 +55,97 @@ map.on('load', function() {
     item.appendChild(value);
     legend.appendChild(item);
   }
+
+  //Add source: hydrant points
   map.addSource('hydrants', {
             type: 'geojson',
             data: hydrants
   });
-
+ // Add source: engines data (polygon)
   map.addSource('engines', {
                     type: 'geojson',
                     data: engines
   });
 
+  // Add engine layer
   map.addLayer({
                 "id":"engines",
                 "type":"fill",
                 'source': 'engines',
-                // 'source-layer':'fishJan-bhb97l',
-                'layout': {
-                  'visibility': 'visible'},
+                //'layout': {
+                  //'visibility': 'visible'},
                 paint: {
-                   // color circles by year_built_copy, using a match expression
                    'fill-color': 'pink',
-                   'fill-opacity': 0.2,
-                   'fill-outline-color': 'black'
-               },
-               'filter': ['==', '$type', 'Polygon']
+                   'fill-outline-color': 'purple'
+                  }
+               //,'filter': ['==', '$type', 'Polygon']
   });
 
-  // Add hydrant layer 
+  map.addLayer({
+'id': 'engines-borders',
+'type': 'line',
+'source': 'engines',
+'layout': {},
+'paint': {
+'line-color': '#636363',
+'line-width': 1
+}
+});
+
+  // Add hydrant layer
   map.addLayer({
             "id":"hydrants",
             "type":"circle",
             'source': 'hydrants',
             // 'source-layer':'fishJan-bhb97l',
-            'layout': {
-              'visibility': 'visible'},
+            //'layout': {
+              //'visibility': 'visible'},
             paint: {
              // initially just colour all the same (base map)
              "circle-color": "#756bb1",
-             "circle-radius": 2,
-             "circle-stroke-width": 0.6,
-             "circle-stroke-color": "#fff",
-             "circle-opacity":0.3
+             "circle-radius": 3,
+             "circle-stroke-width": 0.5,
+             "circle-stroke-color": "#fff"
+             //"circle-opacity":0.25
             }
   });
+
+//Add engine opacity function
+  slider_map.addEventListener('input', function(e) {
+map.setPaintProperty(
+'engines',
+'fill-opacity',
+parseInt(e.target.value, 10) / 100
+);
+
+map.setPaintProperty(
+'engines-borders',
+'line-opacity',
+parseInt(e.target.value, 10) / 100
+);
+
+// Value indicator
+sliderValue_map.textContent = e.target.value + '%';
+});
+
+
+//Add engine opacity function
+slider_map2.addEventListener('input', function(e) {
+map.setPaintProperty(
+'hydrants',
+'circle-opacity',
+parseInt(e.target.value, 10) / 100
+);
+
+map.setPaintProperty(
+'hydrants',
+'circle-stroke-opacity',
+parseInt(e.target.value, 10) / 100
+);
+// Value indicator
+sliderValue_map2.textContent = e.target.value + '%';
+});
+
 
 });
 
@@ -98,7 +155,7 @@ map.on('load', function() {
     // location of the feature, with description HTML from its properties.
 map.on('click', 'hydrants', function (e) {
   map.flyTo({ center: e.features[0].geometry.coordinates});
-  var coordinates = e.features[0].geometry.coordinates.slice(); 
+  var coordinates = e.features[0].geometry.coordinates.slice();
   var description = "<b>Hydrant ID:</b> " + e.features[0].properties.HYDRANTNUM;
   description += "<br><b>Engine number:</b> " + e.features[0].properties.ENGINE_NUM;
   description += "<br><b>Year installed:</b> " + e.features[0].properties.YEAR_INSTA;
@@ -118,15 +175,6 @@ map.on('click', 'hydrants', function (e) {
      .addTo(map);
 });
 
-map.on('mouseenter', 'hydrants', function () {
-    map.getCanvas().style.cursor = 'pointer';
-});
-map.on('mouseleave', 'hydrants', function () {
-    map.getCanvas().style.cursor = '';
-});
-
-//var myFeatures = map.querySourceFeatures('engines');
-//console.log(myFeatures);
 
 
 /* ============= Show the slider scores ============== */
@@ -136,6 +184,3 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 };
-
-
-

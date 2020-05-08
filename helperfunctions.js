@@ -17,11 +17,11 @@ var appState = {
   "filter_on": undefined,
   "eng_filter_on": undefined,
   "engineFilter": undefined
-}; // note: appState values are only updated when the 'Update Map' button is Clicked! 
+}; // note: appState values are only updated when the 'Update Map' button is Clicked!
 
 /* ============= For reading and updating colour of map ============== */
 
-// read input function to read the new input when button is clicked 
+// read input function to read the new input when button is clicked
 var readInput = function(){
   appState.fireScore = $('#cbox-input1')[0].checked;
   console.log("Include Fire Risk?", appState.fireScore);
@@ -60,7 +60,7 @@ var inputToCombi = function(){
 
 /* ============= Filters  ============== */
 var filterByScores = function(c,s){
-  // if combination is "0000", don't filter 
+  // if combination is "0000", don't filter
   if(c!="0000"){
     map.setFilter('hydrants', ['==', ['get', c], s]);
   }
@@ -102,7 +102,7 @@ var updateMap = function(combination){
     resetColours();
   }else{
     if (map.getLayer('hydrants')){ map.removeLayer('hydrants')};
-    // add new layer 
+    // add new layer
     map.addLayer({
                 "id":"hydrants",
                 "type":"circle",
@@ -128,7 +128,7 @@ var updateMap = function(combination){
                     6,
                     '#fc4e2a',
                     7,
-                    '#e31a1c', 
+                    '#e31a1c',
                     8,
                     '#bd0026',
                     9,
@@ -148,7 +148,7 @@ var updateMap = function(combination){
 
 /* ============= Reset Map ============== */
 var resetColours = function(){
-  // if the hydrants are plotted, remove them 
+  // if the hydrants are plotted, remove them
   if (map.getLayer('hydrants')){ map.removeLayer('hydrants')};
   map.addLayer({
               "id":"hydrants",
@@ -160,10 +160,10 @@ var resetColours = function(){
               paint: {
                // color circles by year_built_copy, using a match expression
                "circle-color":"#756bb1",
-               "circle-radius": 2,
-               "circle-stroke-width": 0.6,
+               "circle-radius": 3,
+               "circle-stroke-width": 0.5,
                "circle-stroke-color": "#fff",
-               "circle-opacity":0.3
+               "circle-opacity":1
               }
   });
 
@@ -182,8 +182,8 @@ var resetValues = function(){
   slider.value=1;
   output.innerText = 1;
   map.flyTo({
-    center: [-75.155802, 39.995313],
-    zoom: 10,
+    center: [ -75.135791, 40.008376],
+    zoom: 10.3,
     essential: true // this animation is considered essential with respect to prefers-reduced-motion
   });
 }
@@ -191,14 +191,14 @@ var resetValues = function(){
 
 /* ============= Button Clicks ============== */
 
-// everytime a button is clicked, the inputs of the side bar are read 
-// appstate is updated 
-// the filter is run 
+// everytime a button is clicked, the inputs of the side bar are read
+// appstate is updated
+// the filter is run
 var buttonClick = function(){
   $('#plotbutton').click(function(e) {
     readInput(); //updates appstate
     var c =inputToCombi();
-    updateMap(c);  
+    updateMap(c);
     filterMap(c, appState.filter_on, appState.eng_filter_on);
   });
 
@@ -212,9 +212,5 @@ var buttonClick = function(){
 
 /* ============= Executing these functions ============== */
 $(document).ready(function() {
-  buttonClick();  
+  buttonClick();
 });
-
-
-
-

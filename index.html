@@ -38,7 +38,7 @@
 			<div class="container">
 				<p><b>Factors to prioritize:</b></p>
 			 <!-- BE CAREFUL WITH CHECKBOXES! The jQuery API handles checkboxes differently than other inputs! -->
-			 
+
 			     <label id="checkbox-label1" for="cbox-input1">Fire Risk</label>
 			     <input type="checkbox" id="cbox-input1">
 			     <br>
@@ -107,7 +107,7 @@
 				</table>
 			</div>
 			<!-- End of table -->
-		</div> 
+		</div>
 		<!-- end of threshold class w-1000 -->
 	</div>
 	<!-- end of sidebar -->
@@ -132,7 +132,7 @@
             </div>
  		</div>
 
-	
+
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		   <div class="modal-dialog" role="document">
 		     <div class="modal-content">
@@ -168,6 +168,36 @@
 		</div>
  	</div>
 	<!-- end of options dropdown-->
+	<!-- Slider:Adjust engine opacity-->
+	<div class="map-overlay" id='opacityslider1'>
+	<div class="map-overlay" id='opacityslider2'>
+	<label>Engine opacity: <span id="slider-value_map">100%</span></label>
+	<input
+	id="slider_map"
+	type="range"
+	min="0"
+	max="100"
+	step="0"
+	value="100"
+	/>
+	</div>
+	</div>
+
+	<!-- Slider:Adjust hydrant opacity-->
+	<div class="map-overlay" id='opacityslider3'>
+	<div class="map-overlay" id='opacityslider4'>
+	<label>Hydrant opacity: <span id="slider-value_map2">100%</span></label>
+	<input
+	id="slider_map2"
+	type="range"
+	min="0"
+	max="100"
+	step="0"
+	value="100"
+	/>
+	</div>
+	</div>
+
 
 	<!-- SCRIPTS! -->
 	<script src="main.js"></script>
