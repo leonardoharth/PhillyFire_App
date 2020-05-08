@@ -21,7 +21,7 @@ $.ajax('https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENG
   });
 
 var engines;
-  $.ajax('https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson')
+  $.ajax('https://raw.githubusercontent.com/njxinran95/PhillyFire_App/master/engines_4326.geojson')
     .done(function(response) {
       engines = JSON.parse(response);
       console.log(engines);
