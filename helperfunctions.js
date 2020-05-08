@@ -137,8 +137,8 @@ var updateMap = function(combination){
                     '#420D09',
                     '#ccc' //for other that may not be specified
                   ],
-                 "circle-radius": 2,
-                 "circle-stroke-width": 0.6,
+                 "circle-radius": 3,
+                 "circle-stroke-width": 0.3,
                  "circle-stroke-color": "#fff",
                  "circle-opacity":0.3
                 }
