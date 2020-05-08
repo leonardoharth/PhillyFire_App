@@ -204,8 +204,8 @@ map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
 }
 };
 
-var layers = document.getElementById('menu');
-layers.appendChild(link);
+var layers_2 = document.getElementById('menu');
+layers_2.appendChild(link);
 }
 
 /* ============= Show the slider scores ============== */
