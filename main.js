@@ -149,7 +149,7 @@ map.on('load', function() {
   });
 
 
-}); // close the map on load 
+}); // close the map on load
 
 
 /* ============= Pop up for each hydrant  ============== */
@@ -173,6 +173,23 @@ map.on('click', 'hydrants', function (e) {
      .setHTML(description)
      .addTo(map);
 });
+
+
+/* ============= Zoom in: click on engines  ============== */
+map.on('click', "engines", function(e) {
+var coordinates = e.features[0].geometry.coordinates;
+//console.log(e.features[0]);
+//console.log(coordinates[0]);
+
+var bounds = coordinates[0].reduce(function(bounds, coord) {
+return bounds.extend(coord);
+}, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
+
+map.fitBounds([bounds._sw,bounds._ne], {
+padding: 20
+});
+});
+
 
 /* ============= Show and hide layers ============== */
 var toggleableLayerIds = ['engines', 'engines-borders','hydrants'];
