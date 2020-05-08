@@ -41,22 +41,41 @@ var readInput = function(){
   console.log("Filter to this engine number", appState.engineFilter);
 };
 
+//Read hydrant slider values
+var hydrantslider = document.getElementById("slider_map2");
+var hydrantsliderval = hydrantslider.value;
+var opacity_val= parseInt(hydrantsliderval,10)/100;
+
 var inputToNum = function(input){
   if(input){
     return 1;
   }else{
     return 0;
   }
-}
+};
 
 var inputToCombi = function(){
   var fir = inputToNum(appState.fireScore);
   var soc = inputToNum(appState.socialScore);
   var ind = inputToNum(appState.industrialScore);
   var age = inputToNum(appState.hydrantScore);
-  console.log("Combination to get from file:" +fir+ind+soc+age)
+  console.log("Combination to get from file:" +fir+ind+soc+age);
   return ""+fir+ind+soc+age
 }
+
+//Zoom in function
+var zoomIn=function(eng){
+  if (eng==e.features[0].properties.ENGINE_NUM){
+var coordinates = e.features[0].geometry.coordinates;
+var bounds = coordinates[0].reduce(function(bounds, coord) {
+return bounds.extend(coord);
+ }, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
+
+ map.fitBounds([bounds._sw,bounds._ne], {
+padding: 20
+});
+}
+};
 
 /* ============= Filters  ============== */
 var filterByScores = function(c,s){
@@ -64,13 +83,13 @@ var filterByScores = function(c,s){
   if(c!="0000"){
     map.setFilter('hydrants', ['==', ['get', c], s]);
   }
-}
+};
 
 var filterByEngine = function(eng){
    map.setFilter('hydrants', ['==', ['get', 'ENGINE_NUM'], eng]);
-}
+};
 
-var filterByBoth = function(c,s, eng){
+var filterByBoth = function(c,s,eng){
   if (c!="0000"){
     map.setFilter('hydrants', ["all",
       ['==', ['get', c], s],
@@ -79,22 +98,24 @@ var filterByBoth = function(c,s, eng){
   }else{ // if combi is 0000, don't filter by scores
     filterByEngine(eng);
   }
-}
+};
 
 var filterMap = function(c, includeScore, includeEngine){
   var s = Number(appState.scoreFilter);
-  var eng = Number(appState.engineFilter)
+  var eng = Number(appState.engineFilter);
   if(includeScore){
     if (includeEngine){
-      filterByBoth(c,s,eng)
+      filterByBoth(c,s,eng);
     }else{
-      filterByScores(c,s)
+      filterByScores(c,s);
     }
   }else if(includeEngine){
-    filterByEngine(eng)
+    filterByEngine(eng);
   }
-}
+};
 /* ============= Update map ============== */
+var sliderValue_map2 = document.getElementById('slider-value_map2');
+var slider_map2 = document.getElementById('slider_map2');
 
 var updateMap = function(combination){
   // if the hydrants are plotted, remove theme
@@ -139,12 +160,14 @@ var updateMap = function(combination){
                   ],
                  "circle-radius": 3,
                  "circle-stroke-width": 0.3,
-                 "circle-stroke-color": "#fff",
-                 "circle-opacity":0.3
+                 "circle-stroke-color": "#fff"
+                 //"circle-opacity": opacity_val
                 }
     });
-  }
+
+    map.setPaintProperty('hydrants', 'circle-opacity', opacity_val);
 }
+};
 
 /* ============= Reset Map ============== */
 var resetColours = function(){
@@ -167,7 +190,7 @@ var resetColours = function(){
               }
   });
 
-}
+};
 
 var resetValues = function(){
   $("#cbox-input1").prop("checked", false);
@@ -186,7 +209,7 @@ var resetValues = function(){
     zoom: 10.3,
     essential: true // this animation is considered essential with respect to prefers-reduced-motion
   });
-}
+};
 
 
 /* ============= Button Clicks ============== */

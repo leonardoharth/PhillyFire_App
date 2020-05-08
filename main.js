@@ -29,8 +29,8 @@ var engines;
 /* ============= Legend setup ============== */
 var layers = ['Top Priority (1)', '2', '3', '4', '5', '6', '7', '8', '9', 'Lowest Priority (10)'];
 var colors = ['#ffffcc','#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026',  '#420D09'];
-/* ============= MAPS============== */
 
+/* ============= MAPS============== */
 var hoveredStateId = null;
 
 // opacity slider function
@@ -38,7 +38,6 @@ var slider_map = document.getElementById('slider_map');
 var sliderValue_map = document.getElementById('slider-value_map');
 var slider_map2 = document.getElementById('slider_map2');
 var sliderValue_map2 = document.getElementById('slider-value_map2');
-
 //Map overall
 map.on('load', function() {
   for (i = 0; i < layers.length; i++) {
@@ -110,7 +109,7 @@ map.on('load', function() {
   });
 
 //Add engine opacity function
-  slider_map.addEventListener('input', function(e) {
+slider_map.addEventListener('input', function(e) {
 map.setPaintProperty(
 'engines',
 'fill-opacity',
@@ -147,6 +146,7 @@ sliderValue_map2.textContent = e.target.value + '%';
 
 
 });
+
 
 /* ============= Pop up for each hydrant  ============== */
 // inspect a unit (point) on click
@@ -210,3 +210,6 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 };
+
+/* ============= Add navigation control bar============== */
+map.addControl(new mapboxgl.NavigationControl());
