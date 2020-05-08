@@ -8,23 +8,28 @@ body {
   height: 40px;
   top: 0;
   text-align: center;
-  background-color: #4a1486;
+  background-color: #46185f;
   color: white;
   padding-top: 9px;
   font-weight: bold;
 }
 
-
 .sidebar {
-    position: absolute;
-    left: 0px;
-    width: 340px;
-    top: 40px;
-    bottom: 0;
-    overflow-y: auto;
-    padding: 20px;
-    padding-bottom: 60px;
+  position: absolute;
+  left: 0px;
+  width: 340px;
+  top: 40px;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px;
+  padding-bottom: 60px;
 }
+
+
+.optionsBar{
+  background-color: #fff;
+}
+
 
 .item {
     padding: 10px;
@@ -114,23 +119,23 @@ body {
 }
 
 .filter-ctrl {
-position: absolute;
-top: 50px;
-left: 350px;
-z-index: 1;
+  position: absolute;
+  top: 50px;
+  left: 350px;
+  z-index: 1;
 }
 
 .filter-ctrl input[type='text'] {
-font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-width: 100%;
-border: 0;
-background-color: #fff;
-margin: 0;
-color: rgba(0, 0, 0, 0.5);
-padding: 10px;
-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-border-radius: 3px;
-width: 120px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  width: 100%;
+  border: 0;
+  background-color: #fff;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  width: 120px;
 }
 
 button {
@@ -152,16 +157,18 @@ button {
   background: rgba(255, 255, 255, 0.8);
   margin-right: 20px;
   font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 3px;
 }
+
 #features {
   bottom: 10px;
   left: 350px;
-  height: 40px;
-  margin-top: 20px;
-  width: 400px;
+  height: 25px;
+  margin-top: 0px;
+  width: 320px;
 }
+
 #legend {
   padding: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -182,101 +189,124 @@ button {
 /* CSS FOR engine opacity slider */
 
 #opacityslider1{
-background-color: #fff;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-position: absolute;
-bottom: 50px;
-left: 360px;
-width:160px;
-height:50px;
-font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 50px;
+  left: 350px;
+  width:160px;
+  height:50px;
+  font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 #opacityslider2 label {
-display: block;
-margin: 0 0 10px;
+  display: block;
+  margin: 0 0 10px;
 }
 
 #opacityslider2 input {
-background-color: transparent;
-display: inline-block;
-width: 100%;
-position: relative;
-margin: 0;
-cursor: ew-resize;
+  background-color: transparent;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  cursor: ew-resize;
 }
 
 /* CSS FOR hydrant opacity slider */
 #opacityslider3{
-background-color: #fff;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-position: absolute;
-bottom: 105px;
-left: 360px;
-width:160px;
-height:50px;
-font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 105px;
+  left: 350px;
+  width:160px;
+  height:50px;
+  font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 #opacityslider4 label {
-display: block;
-margin: 0 0 10px;
+  display: block;
+  margin: 0 0 10px;
 }
 
 #opacityslider4 input {
-background-color: transparent;
-display: inline-block;
-width: 100%;
-position: relative;
-margin: 0;
-cursor: ew-resize;
+  background-color: transparent;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  cursor: ew-resize;
 }
 
 /* CSS FOR hide and show layers button */
+
+#dropdownMenuButton {
+  background: #756bb1;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 350px;
+  border-radius: 3px;
+  width: 120px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: 'Open Sans', sans-serif;
+}
+
 #menu {
-background: #fff;
-position: absolute;
-z-index: 1;
-top: 50px;
-left: 360px;
-border-radius: 3px;
-width: 120px;
-border: 1px solid rgba(0, 0, 0, 0.4);
-font-family: 'Open Sans', sans-serif;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+  /*top: 50px;
+  left: 360px;*/
+ /* border-radius: 3px;
+  width: 120px;*/
+  border: 0px solid rgba(0, 0, 0, 0.4);
+  /*font-family: 'Open Sans', sans-serif;*/
+  padding-top: 0px;
 }
 
 #menu a {
-font-size: 13px;
-color: #404040;
-display: block;
-margin: 0;
-padding: 0;
-padding: 10px;
-text-decoration: none;
-border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-text-align: center;
+  font-size: 13px;
+  color: #404040;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 
 #menu a:last-child {
-border: none;
+  border: none;
 }
 
 #menu a:hover {
-background-color: #f8f8f8;
-color: #404040;
+  background-color: #f8f8f8;
+  color: #404040;
 }
 
 #menu a.active {
-background-color: #9e9ac8;
-color: #ffffff;
+  background-color: #9e9ac8;
+  color: #ffffff;
 }
 
 #menu a.active:hover {
-background: #bcbddc;
+  background: #bcbddc;
+}
+
+#credit{
+  position: absolute;
+ 
+  width: 400px;
+  padding: 20px;
+  font-size: 10px;
 }

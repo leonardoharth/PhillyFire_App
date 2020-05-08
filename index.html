@@ -27,12 +27,16 @@
 		width: 75%;}
 	</style>
 	<!-- title -->
-	<div class="titlebar space">HYDRANT INSPECTOR</div>
+	<div class="titlebar space">
+		HYDRANT INSPECTOR
+	</div>
+
+
 </head>
 <body>
 	<!-- Sidebar -->
 	<div class="sidebar">
-		<!-- Start sidebar options section -->
+        <!-- Start sidebar options section -->
 		<div id="threshold" class="w-100">
 			<h5>Build hydrant inspection prioritization</h5>
 			<div class="container">
@@ -79,7 +83,7 @@
 			<button id="resetbutton" style="margin-bottom:20px">Reset map</button>
 
 			<!-- Table -->
-			<div class="row catchments">
+			<!-- <div class="row catchments">
 				<table id="catchments" class="display">
 					<thead style="border-bottom:1px solid black;">
 						<tr>
@@ -89,8 +93,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- jquery append table -->
-					</tbody>
+						<!-jquery append table -->
+					<!-- </tbody>
 				</table>
 			</div>
 			<div class="row parcels d-none" style="max-width:100%;">
@@ -100,15 +104,40 @@
 							<th class="w-100">Address</th>
 							<th>Risk Score</th>
 						</tr>
-					</thead>
-					<tbody>
+					</thead> -->
+					<!-- <tbody>  -->
 						<!-- jquery append table -->
-					</tbody>
+					<!-- /tbody>
 				</table>
-			</div>
+			</div> --> 
 			<!-- End of table -->
 		</div>
 		<!-- end of threshold class w-1000 -->
+	<!-- 	<div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="https://pennmusa.github.io/MUSA_801.io/">BACK TO MUSA</a>
+              <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float: left">Guide</a>
+             <a class="dropdown-item" href="#">Algorithm</a>
+            </div>
+ 		</div> -->
+ 	
+ 		<div class="card">
+ 			<div class ="card-footer">
+	 			<h6 class="card-title">About</h6>
+	 			<p class="card-text">Hydrant Inspector is an application to help the Philadelphia Fire Department to inspect hydrants. The fire risk scores were generated using machine learning methods. For more information on the process, please follow the links below.</p>
+		 		<a class="card-link" href="https://pennmusa.github.io/MUSA_801.io/">MUSA</a>
+		        <!-- <a data-toggle="modal" data-target="#exampleModal" style="float: left">Guide</a> -->
+		        <a class= "card-link" href="#">Github</a>
+		        <p class="card-text">Leanne Chan, Ran Xin, Li Ziqun University of Pennsylvania, 2020</p>
+	     	</div>
+	    </div>
+	      
+   
+
+      	<!-- <p id="credit">Ran Xin and Leanne Chan, University of Pennsylvania 2020</p> -->
 	</div>
 	<!-- end of sidebar -->
 	<!-- Map -->
@@ -120,7 +149,7 @@
 	<!-- Legend  -->
 	<div class='map-overlay' id='legend'></div>
 	<!-- OPTIONS -->
-	<div class="topright-button" style="float: right">
+<!-- 	<div class="topright-button" style="float: right">
 		<div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Options
@@ -130,10 +159,10 @@
               <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float: left">Guide</a>
              <a class="dropdown-item" href="#">Algorithm</a>
             </div>
- 		</div>
+ 		</div> -->
 
 
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		   <div class="modal-dialog" role="document">
 		     <div class="modal-content">
 		       <div class="modal-header">
@@ -166,41 +195,48 @@
 		     </div>
 		    </div>
 		</div>
- 	</div>
+ 	</div>  -->
 	<!-- end of options dropdown-->
 
 	<!-- Slider: Adjust engine opacity-->
 	<div class="map-overlay" id='opacityslider1'>
-	<div class="map-overlay" id='opacityslider2'>
-	<label>Engine opacity: <span id="slider-value_map">100%</span></label>
-	<input
-	id="slider_map"
-	type="range"
-	min="0"
-	max="100"
-	step="0"
-	value="100"
-	/>
-	</div>
+		<div class="map-overlay" id='opacityslider2'>
+			<label>Engine opacity: <span id="slider-value_map">100%</span></label>
+			<input
+				id="slider_map"
+				type="range"
+				min="0"
+				max="100"
+				step="0"
+				value="100"/>
+		</div>
 	</div>
 
 	<!-- Slider: Adjust hydrant opacity-->
 	<div class="map-overlay" id='opacityslider3'>
-	<div class="map-overlay" id='opacityslider4'>
-	<label>Hydrant opacity: <span id="slider-value_map2">100%</span></label>
-	<input
-	id="slider_map2"
-	type="range"
-	min="0"
-	max="100"
-	step="0"
-	value="100"
-	/>
-	</div>
+		<div class="map-overlay" id='opacityslider4'>
+			<label>Hydrant opacity: <span id="slider-value_map2">100%</span></label>
+			<input
+			id="slider_map2"
+			type="range"
+			min="0"
+			max="100"
+			step="0"
+			value="100"
+			/>
+		</div>
 	</div>
 
 	<!-- Button： show and hide layers-->
-	<nav id="menu"></nav>
+	<div class="dropdown" id="mapOptions">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Map Views
+        </button>
+        <!-- map options will be added in this div below in the main.js -->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="menu"></div>
+ 	</div>
+
+
 
 	<!-- SCRIPTS! -->
 	<script src="main.js"></script>

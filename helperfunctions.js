@@ -7,6 +7,7 @@ var addOption = function(checkedTrue, layerName) {
   }
 };
 
+/* ============= For reading user input ============== */
 
 var appState = {
   "fireScore": undefined,
@@ -16,10 +17,10 @@ var appState = {
   "scoreFilter": undefined,
   "filter_on": undefined,
   "eng_filter_on": undefined,
-  "engineFilter": undefined
+  "engineFilter": undefined,
+  "hydrantOpacity": undefined
 }; // note: appState values are only updated when the 'Update Map' button is Clicked!
 
-/* ============= For reading and updating colour of map ============== */
 
 // read input function to read the new input when button is clicked
 var readInput = function(){
@@ -39,12 +40,27 @@ var readInput = function(){
   console.log("engine scores on: ", appState.eng_filter_on);
   appState.engineFilter = $('#text-input1').val();
   console.log("Filter to this engine number", appState.engineFilter);
+  appState.hydrantOpacity = parseInt(document.getElementById("slider_map2").value, 10)/100 ;
+  console.log("Opacity of hydrant: ", appState.hydrantOpacity);
 };
 
-//Read hydrant slider values
-var hydrantslider = document.getElementById("slider_map2");
-var hydrantsliderval = hydrantslider.value;
-var opacity_val= parseInt(hydrantsliderval,10)/100;
+/**************** ============= Changes to Engines ==============  **********************/
+/* ============= zoom into engines ============== */
+var zoomIn=function(eng){
+  if (eng==e.target.features[0].properties.ENGINE_NUM){
+    var coordinates = e.target.features[0].geometry.coordinates;
+    var bounds = coordinates[0].reduce(function(bounds, coord) {
+      return bounds.extend(coord);},
+      new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
+    map.fitBounds([bounds._sw,bounds._ne], {
+      padding: 20
+    });
+  }
+};
+
+
+/**************** ============= Changes to hydrants ==============  **********************/
+/* ============= Update combination displayed ============== */
 
 var inputToNum = function(input){
   if(input){
@@ -61,20 +77,6 @@ var inputToCombi = function(){
   var age = inputToNum(appState.hydrantScore);
   console.log("Combination to get from file:" +fir+ind+soc+age);
   return ""+fir+ind+soc+age
-}
-
-//Zoom in function
-var zoomIn=function(eng){
-  if (eng==e.target.features[0].properties.ENGINE_NUM){
-var coordinates = e.target.features[0].geometry.coordinates;
-var bounds = coordinates[0].reduce(function(bounds, coord) {
-return bounds.extend(coord);
- }, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
-
- map.fitBounds([bounds._sw,bounds._ne], {
-padding: 20
-});
-}
 };
 
 /* ============= Filters  ============== */
@@ -115,11 +117,10 @@ var filterMap = function(c, includeScore, includeEngine){
     //zoomIn(eng);
   }
 };
-/* ============= Update map ============== */
-var sliderValue_map2 = document.getElementById('slider-value_map2');
-var slider_map2 = document.getElementById('slider_map2');
 
-var updateMap = function(combination){
+
+/* ============= Update map ============== */
+var updateMap = function(combination, opacity_val){
   // if the hydrants are plotted, remove theme
   if (combination=="0000"){
     resetColours();
@@ -161,9 +162,8 @@ var updateMap = function(combination){
                     '#ccc' //for other that may not be specified
                   ],
                  "circle-radius": 3,
-                 "circle-stroke-width": 0.3,
-                 "circle-stroke-color": "#fff"
-                 //"circle-opacity": opacity_val
+                 "circle-stroke-width": 0.1,
+                 "circle-stroke-color": "black"
                 }
     });
 
@@ -186,8 +186,8 @@ var resetColours = function(){
                // color circles by year_built_copy, using a match expression
                "circle-color":"#756bb1",
                "circle-radius": 3,
-               "circle-stroke-width": 0.5,
-               "circle-stroke-color": "#fff",
+               "circle-stroke-width": 0.1,
+               "circle-stroke-color": "black",
                "circle-opacity":1
               }
   });
@@ -203,12 +203,19 @@ var resetValues = function(){
   $('#cbox-input6').prop("checked", false);
   $('#text-input1').val('');
 
-  // Push Slider back to 1
+  // Push filter score Sliders back to 1
   slider.value=1;
   output.innerText = 1;
+  // opacity sliders only for hydrants
+  // engineOpc_text.textContent = 100 + '%'
+  hydrantOpac_text.textContent = 100 + '%'
+  // engineOpac_slider.value=100
+  hydrantOpac_slider.value=100 // resets the hydrant opacity value, opacity is also reset to 1
+
+  // recenter the map 
   map.flyTo({
-    center: [ -75.135791, 40.008376],
-    zoom: 10.3,
+    center:[-75.150312,40.000836],
+    zoom: 10,
     essential: true // this animation is considered essential with respect to prefers-reduced-motion
   });
 };
@@ -223,7 +230,7 @@ var buttonClick = function(){
   $('#plotbutton').click(function(e) {
     readInput(); //updates appstate
     var c =inputToCombi();
-    updateMap(c);
+    updateMap(c, appState.hydrantOpacity);
     filterMap(c, appState.filter_on, appState.eng_filter_on);
   });
 
