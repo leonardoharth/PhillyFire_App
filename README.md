@@ -4,4 +4,4 @@ This is an application intended for the Philadelphia Fire Department to conduct 
 
 Link to website: https://njxinran95.github.io/PhillyFire_App/
 
-By: Xin Ran and Leanne Chan 
+By:  Ran Xin and Leanne Chan 
