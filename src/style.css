@@ -17,7 +17,7 @@ body {
 .sidebar {
   position: absolute;
   left: 0px;
-  width: 340px;
+  width: 25%;
   top: 40px;
   bottom: 0;
   overflow-y: auto;
@@ -163,7 +163,7 @@ button {
 
 #features {
   bottom: 25px;
-  left: 340px;
+  left: 26%;
   height: 40px;
   margin-top: 0px;
   width: 300px;
@@ -198,7 +198,7 @@ button {
   margin-bottom: 10px;
   position: absolute;
   bottom: 65px;
-  left: 360px;
+  left: 28%;
   width:160px;
   height:50px;
   font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -227,7 +227,7 @@ button {
   margin-bottom: 10px;
   position: absolute;
   bottom: 120px;
-  left: 360px;
+  left: 28%;
   width:160px;
   height:50px;
   font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -255,7 +255,7 @@ button {
   position: absolute;
   z-index: 1;
   top: 10px;
-  left: 360px;
+  left: 28%;
   border-radius: 3px;
   width: 120px;
   border: 1px solid rgba(0, 0, 0, 0.4);
