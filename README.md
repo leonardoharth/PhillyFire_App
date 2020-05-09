@@ -11,8 +11,8 @@ This is an application intended for the Philadelphia Fire Department to conduct 
 - Tooltips over both the engines and the hydrants to show individual information. 
 - Links for report available on the website.
 
-## Link to website: https://njxinran95.github.io/PhillyFire_App/
-
+## Link to website:
+https://njxinran95.github.io/PhillyFire_App/
 
 ## Credits 
 Ran Xin and Leanne Chan 
