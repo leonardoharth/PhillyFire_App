@@ -15,4 +15,8 @@ This is an application intended for the Philadelphia Fire Department to conduct 
 https://njxinran95.github.io/PhillyFire_App/
 
 ## Credits 
-Ran Xin and Leanne Chan 
+Ran Xin
+njxinran@design.upenn.edu
+
+Leanne Chan
+llchan@design.upenn.edu
