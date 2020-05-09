@@ -11,7 +11,7 @@ map = new mapboxgl.Map({
 
 /* ============= DATA SET UP ============== */
 var hydrants;
-$.ajax('https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson')
+$.ajax('https://raw.githubusercontent.com/njxinran95/PhillyFire_App/master/deciles_by_ENGINE_4326.geojson')
   .done(function(response) {
     hydrants= JSON.parse(response);
     console.log(hydrants);
