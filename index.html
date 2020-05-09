@@ -38,11 +38,20 @@
 	<div class="sidebar">
         <!-- Start sidebar options section -->
 		<div id="threshold" class="w-100">
+			<div class="help-tip">
+			    <p><b>Selected factors are summed, then ranked from 1-10 in each engine.</b><br>	
+			    	<br>
+			    	<b>Fire Risk: </b> Predicted fires trained on 2018 data. <br>
+			    	<b>Industrial Parcels:</b> Number of industrial parcels around hydrant. <br>
+			    	<b>Social Impact:</b> Proximity to schools, number of youth/elderly, population density, median income of area.<br>
+			    	<b>Hydrant Age:</b> 2020 - year built. 
+
+			    </p>
+			 	</div>
 			<h5>Build hydrant inspection prioritization:</h5>
 			<div class="container">
 				<p><b>Factors to prioritize:</b></p>
 			 <!-- BE CAREFUL WITH CHECKBOXES! The jQuery API handles checkboxes differently than other inputs! -->
-
 			     <label id="checkbox-label1" for="cbox-input1">Fire Risk</label>
 			     <input type="checkbox" id="cbox-input1">
 			     <br>
@@ -128,14 +137,14 @@
  			<div class ="card-footer">
 	 			<h5 class="card-title" style="text-align:center"><strong>   ABOUT   </strong></h5>
 	 			<p class="card-text">Hydrant Inspector is an application to help the Philadelphia Fire Department to inspect hydrants. The fire risk scores were generated using machine learning methods. For more information on the process, please follow the links below:</p>
-		 		<a class="card-link" href="https://pennmusa.github.io/MUSA_801.io/" style="text-align:center">MUSA home</a>
-				<br>
 		        <!-- <a data-toggle="modal" data-target="#exampleModal" style="float: left">Guide</a> -->
+		        <a class= "card-link" href="#" style="text-align:center">Markdown</a>
+				<br>
 		        <a class= "card-link" href="https://github.com/njxinran95/PhillyFire_App" style="text-align:center">Github</a>
-							<br>
-						<a class= "card-link" href="#" style="text-align:center">Markdown</a>
-						<br>
-						<br>
+				<br>
+				<a class="card-link" href="https://pennmusa.github.io/MUSA_801.io/" style="text-align:center">MUSA home</a>
+				<br>
+				<br>
 		        <p class="card-text"><strong>Team:</strong> Leanne Chan, Ran Xin, Li Ziqun (University of Pennsylvania, 2020)<br><strong>APP by:</strong> Leanne Chan, Ran Xin</p>
 	     	</div>
 	    </div>
@@ -149,7 +158,8 @@
 	<div id="map"></div>
 	<!-- Information -->
 	<div class='map-overlay' id='features'>
-		<p>Hydrant priorities are ranked 1-10 within each engine</p>
+		<p>Hydrant priorities are ranked within each engine.
+		Engines are colored by ranked fire risk across Philly.</p>
 	</div>
 	<!-- Legend  -->
 	<div class='map-overlay' id='legend'></div>

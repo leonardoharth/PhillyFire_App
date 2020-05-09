@@ -184,10 +184,10 @@ var resetColours = function(){
                 'visibility': 'visible'},
               paint: {
                // color circles by year_built_copy, using a match expression
-               "circle-color":"#756bb1",
+               "circle-color":"#7ebdb4",
                "circle-radius": 3,
                "circle-stroke-width": 0.1,
-               "circle-stroke-color": "black",
+               "circle-stroke-color": "white",
                "circle-opacity":1
               }
   });

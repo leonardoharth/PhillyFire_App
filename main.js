@@ -10,9 +10,6 @@ map = new mapboxgl.Map({
 
 
 /* ============= DATA SET UP ============== */
-var url1= "https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson";
-var url2= "https://raw.githubusercontent.com/liziqun/MUSA800_App/master/data/engine.geojson";
-
 var hydrants;
 $.ajax('https://raw.githubusercontent.com/liziqun/MUSA_800/master/deciles_by_ENGINE_4326.geojson')
   .done(function(response) {
@@ -43,6 +40,7 @@ var hydrantOpac_text = document.getElementById('slider-value_map2');
 
 //Map overall
 map.on('load', function() {
+  // create the legend 
   for (i = 0; i < layers.length; i++) {
     var layer = layers[i];
     var color = colors[i];
@@ -78,8 +76,34 @@ map.on('load', function() {
                 //'layout': {
                   //'visibility': 'visible'},
                 paint: {
-                   'fill-color': '#fcfbfd',
-                   'fill-outline-color': '#9e9ac8'
+                   'fill-color': [
+                    'match',
+                    ['get', "fireRisk"],
+                    1,
+                    '#ffffcc',
+                    2,
+                    '#ffeda0',
+                    3,
+                    '#fed976',
+                    4,
+                    '#feb24c',
+                    5,
+                    '#fd8d3c',
+                    6,
+                    '#fc4e2a',
+                    7,
+                    '#e31a1c',
+                    8,
+                    '#bd0026',
+                    9,
+                    '#800026',
+                    10,
+                    '#420D09',
+                    '#ccc' //for other that may not be specified
+                  ]
+
+                   ,
+                   'fill-outline-color': 'white'
                   }
                //,'filter': ['==', '$type', 'Polygon']
   });
@@ -104,11 +128,11 @@ map.on('load', function() {
             //'layout': {
               //'visibility': 'visible'},
             paint: {
-             "circle-color": "#756bb1",
+             "circle-color": "#7ebdb4",
              "circle-radius": 3,
              "circle-stroke-width": 0.1,
-             "circle-stroke-color": "black"
-             //"circle-opacity":0.25
+             "circle-stroke-color": "white",
+             "circle-opacity":1
             }
   });
 
@@ -131,7 +155,7 @@ map.on('load', function() {
   });
 
 
-  //Add engine opacity function
+  //Add hydrant opacity function
   hydrantOpac_slider.addEventListener('input', function(e) {
     map.setPaintProperty(
       'hydrants',
@@ -175,20 +199,47 @@ map.on('click', 'hydrants', function (e) {
 });
 
 
-/* ============= Zoom in: click on engines  ============== */
-map.on('click', "engines", function(e) {
-var coordinates = e.features[0].geometry.coordinates;
-//console.log(e.features[0]);
-//console.log(coordinates[0]);
-
-var bounds = coordinates[0].reduce(function(bounds, coord) {
-return bounds.extend(coord);
-}, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
-
-map.fitBounds([bounds._sw,bounds._ne], {
-padding: 20
+var test; 
+/* ============= Pop up for each ENGINE  ============== */
+map.on('click', 'engines', function (e) {
+  console.log(e);
+  map.flyTo({center: e.lngLat});;
+  var coordinates = e.lngLat;
+  var description = "<b>ENGINE:</b> " + e.features[0].properties.ENGINE_NUM;
+  description += "<br><b>Number of predicted fires: </b>" + e.features[0].properties.predFires;
+  description += "<br><b>Number of industrial parcels: </b>" + e.features[0].properties.indusParcels;
+  description += "<br><b>Number of schools: </b>" + e.features[0].properties.schools;
+  description += "<br><b>Median age: </b>" + e.features[0].properties.Med_Age;
+  description += "<br><b>Median income: </b>$ " + e.features[0].properties.Med_Inc;
+  description += "<br><b>Population: </b>" + e.features[0].properties.Total_Pop;
+  description += "<br><b>Mean Hydrant Age: </b> " + e.features[0].properties.meanHydAge;
+  description += "<br><b>Ranked fire risk: </b> " + e.features[0].properties.fireRisk;
+           // Ensure that if the map is zoomed out such that multiple copies of the feature are visible,
+           // the popup appears over the copy being pointed to.
+  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+   }
+  new mapboxgl.Popup()
+     .setLngLat(coordinates)
+     .setHTML(description)
+     .addTo(map);
 });
-});
+
+
+// /* ============= Zoom in: click on engines  ============== */
+// map.on('click', "engines", function(e) {
+// var coordinates = e.features[0].geometry.coordinates;
+// //console.log(e.features[0]);
+// //console.log(coordinates[0]);
+
+// var bounds = coordinates[0].reduce(function(bounds, coord) {
+// return bounds.extend(coord);
+// }, new mapboxgl.LngLatBounds(coordinates[0][0], coordinates[0][coordinates[0].length-1]));
+
+// map.fitBounds([bounds._sw,bounds._ne], {
+// padding: 20
+// });
+// });
 
 // Change the cursor to a pointer when the mouse is over the places layer.
 map.on('mouseenter', 'hydrants', function() {
