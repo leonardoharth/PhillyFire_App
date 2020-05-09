@@ -204,9 +204,11 @@ button {
   font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
+
+
 #opacityslider2 label {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 0 2px;
 }
 
 #opacityslider2 input {
@@ -235,7 +237,7 @@ button {
 
 #opacityslider4 label {
   display: block;
-  margin: 0 0 10px;
+  margin: 0 0 2px;
 }
 
 #opacityslider4 input {
@@ -263,7 +265,7 @@ button {
 }
 
 #menu {
-  background: #fff;
+  background: white;
   position: relative;
   z-index: 1;
   /*top: 50px;
