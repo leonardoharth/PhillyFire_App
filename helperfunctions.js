@@ -208,11 +208,11 @@ var resetValues = function(){
   output.innerText = 1;
   // opacity sliders only for hydrants
   // engineOpc_text.textContent = 100 + '%'
-  hydrantOpac_text.textContent = 100 + '%'
+  hydrantOpac_text.textContent = 100 + '%';
   // engineOpac_slider.value=100
-  hydrantOpac_slider.value=100 // resets the hydrant opacity value, opacity is also reset to 1
+  hydrantOpac_slider.value=100;// resets the hydrant opacity value, opacity is also reset to 1
 
-  // recenter the map 
+  // recenter the map
   map.flyTo({
     center:[-75.150312,40.000836],
     zoom: 10,
