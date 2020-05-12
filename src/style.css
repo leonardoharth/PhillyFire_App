@@ -185,10 +185,11 @@ body {
 
 #features {
   bottom: 28px;
-  left: 63%;
+  left: 64%;
   height: 40px;
   margin-top: 0px;
   width: 300px;
+  bottom:5%;
   /*overflow-y: scroll;*/
 
 }
