@@ -40,7 +40,7 @@ var hydrantOpac_text = document.getElementById('slider-value_map2');
 
 //Map overall
 map.on('load', function() {
-  // create the legend 
+  // create the legend
   for (i = 0; i < layers.length; i++) {
     var layer = layers[i];
     var color = colors[i];
@@ -199,7 +199,7 @@ map.on('click', 'hydrants', function (e) {
 });
 
 
-var test; 
+var test;
 /* ============= Pop up for each ENGINE  ============== */
 map.on('click', 'engines', function (e) {
   console.log(e);

@@ -1,7 +1,7 @@
 body {
     padding: 0;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: avenir;
 }
 .titlebar {
   width: 100%;
@@ -162,8 +162,8 @@ button {
 }
 
 #features {
-  bottom: 25px;
-  left: 26%;
+  bottom: 28px;
+  left: 63%;
   height: 40px;
   margin-top: 0px;
   width: 300px;
@@ -197,11 +197,11 @@ button {
   padding: 10px;
   margin-bottom: 10px;
   position: absolute;
-  bottom: 65px;
-  left: 28%;
+  bottom: 45px;
+  left: 26%;
   width:160px;
   height:50px;
-  font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: avenir;
 }
 
 
@@ -228,11 +228,11 @@ button {
   padding: 10px;
   margin-bottom: 10px;
   position: absolute;
-  bottom: 120px;
-  left: 28%;
+  bottom: 100px;
+  left: 26%;
   width:160px;
   height:50px;
-  font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Avenir', Helvetica, sans-serif;
 }
 
 #opacityslider4 label {
@@ -257,11 +257,11 @@ button {
   position: absolute;
   z-index: 1;
   top: 10px;
-  left: 28%;
+  left: 26%;
   border-radius: 3px;
   width: 120px;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  font-family: 'Open Sans', sans-serif;
+  font-family: avenir;
 }
 
 #menu {
@@ -382,8 +382,8 @@ button {
 /* CSS animation */
 
 @-webkit-keyframes fadeIn {
-    0% { 
-        opacity:0; 
+    0% {
+        opacity:0;
         transform: scale(0.6);
     }
 
