@@ -255,7 +255,7 @@ body {
   left: 26%;
   width:160px;
   height:50px;
-  font-family: 'Avenir', Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 #opacityslider4 label {
@@ -284,7 +284,7 @@ body {
   border-radius: 3px;
   width: 120px;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  font-family: avenir;
+  font-family: sans-serif;
 }
 
 #menu {
@@ -448,7 +448,7 @@ body {
   border-radius: 3px;
   width: 100px;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  font-family: avenir;
+  font-family: sans-serif;
   text-align: center;
   font-size: 14px;
 }
