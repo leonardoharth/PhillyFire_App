@@ -312,3 +312,7 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   modal.style.display = "none";
 };
+
+//Automatic popup when page load
+window.onload = function(){
+  document.getElementById('helpButton').click();};

@@ -402,9 +402,9 @@ body {
     left:0;
 }
 
-/*Modal*/
+/*Engine Modal*/
 /* The Modal (background) */
-.modal {
+#myModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -419,7 +419,7 @@ body {
 }
 
 /* Modal Content (image) */
-.modal-content {
+#img01 {
   margin: auto;
   display: block;
   width: 80%;
@@ -436,6 +436,21 @@ body {
   color: #ccc;
   padding: 10px 0;
   height: 150px;
+}
+
+/* Helpbutton on the titlebar */
+#helpButton{
+  background: #756bb1;
+  position: absolute;
+  z-index: 1;
+  top: 3px;
+  left: 3%;
+  border-radius: 3px;
+  width: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: avenir;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* Add Animation */

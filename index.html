@@ -31,7 +31,6 @@
 		<h4 style="font-family: 'Avenir', Helvetica, sans-serif;">PHILADELPHIA HYDRANT INSPECTOR</h4>
 	</div>
 
-
 </head>
 <body>
 	<!-- Sidebar -->
@@ -270,6 +269,63 @@
  	</div>
 
 
+		<!-- Button trigger modal -->
+		<button type="button" id="helpButton" class="btn btn-primary" data-toggle="modal" data-target="#myModalHome">
+		  User guide
+		</button>
+
+		<!-- Modal -->
+    <div class="modal fade" id="myModalHome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">How to use the App?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p style="font-size:14px;">* When opening up, if the hydrant points are not shown on the map, or if you could only see fire engine polygons, please refresh the page. </p>
+            <p style="font-weight:bold;">On the map</p>
+            <ul style="font-size:14px;">
+              <li>
+            When opening the page, you will see on the map, hydrant points are overlaid with engine polygons that are colored based on fire risk. You are free to use <strong> "Map Views" </strong> dropdown button to select which feature(s) you would like to see.
+          </li>
+					<li>
+						Toggling the <strong>"Hydrant opacity"</strong> and <strong>"Engine opacity"</strong> sliders can adjust the transparency level of hydrant points and fire engines appearance on the map.
+					</li>
+					<li>
+						Clicking on each hydrant point or each engine polygon will show a popup window that display its basic information. However, since there are over 25000 hydrant points with a high density shown on the map, if you would like to check information for individual hydrants, it will be better for you to <strong>turn off the engine layer</strong> ahead of time by clicking <strong>"Map Views"</strong> dropdown botton and <strong> de-select "engines" </strong>.
+					</li>
+				</ul>
+					 <p style="font-weight:bold;">On the sidebar: Customize hydrant inspection prioritization and views</p>
+					   <ul style="font-size:14px;">
+            <li>
+            If you want to <strong>build hydrant inspection prioritization</strong>, in <strong>Factors to prioritize</strong>, you need to check at least one of the four factors; you are also free to check two or three or all factors with any combinations.
+          </li>
+          <li>
+            After you make selections, you can directly click <strong>"Update map"</strong> to see how different hydrant priorities based on your customization distribute across the City. The priorities are score from 1 to 10, <strong>1 is the top priority and 10 is the lowest priority</strong>. If you want to check a specific value of priority, you need to check the <strong>"Filter by priority?" box</strong> first, and then <strong>toggle the slider</strong> to choose the priority value you want to see. Finally, you then click <strong>"Update map" button</strong> to see the results on the map.
+          </li>
+					<li>
+						If you want to further zoom into a specifc fire engine to see how its hydrant priority looks like, after you make selections in <strong>"Factors to prioritize"</strong>, you can choose to <strong>skip "Filter by priority" </strong>part and check <strong>"Filter by engine?"box </strong>. Clicking the <strong>"See engines" button </strong> will allow you to see a map with different engines labeled with engine numbers. You can then type the engine number you want to zoom in by referring to the map.
+					</li>
+					<li>
+						If you want to check a certain value of hydrant inspection priority in a certain engine, after you make selections in <strong>"Factors to prioritize"</strong>, you need to <strong>select AND toggle "Fiter by priority" </strong>part and complete <strong>"Filter by engine?"</strong> part. Then click <strong>"Update map"</strong>.
+					</li>
+					<li>
+						If you only want to see hydrant points in a certain engine, you can <strong>skip "Factors to prioritize" and "Filter by priority"</strong>, and <strong>check "Filter by engine" box </strong>and put the engine number you want.
+					</li>
+					<li>
+						<strong>"Reset map"</strong> button will clear all selections and/or input you've made and reset all hydrant points on the map into the default color.
+					</li>
+        </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<!-- SCRIPTS! -->
 	<script src="main.js"></script>
