@@ -18,7 +18,8 @@ var appState = {
   "filter_on": undefined,
   "eng_filter_on": undefined,
   "engineFilter": undefined,
-  "hydrantOpacity": undefined
+  "hydrantOpacity": undefined,
+  "rankingBy": undefined,
 }; // note: appState values are only updated when the 'Update Map' button is Clicked!
 
 
@@ -42,6 +43,10 @@ var readInput = function(){
   console.log("Filter to this engine number", appState.engineFilter);
   appState.hydrantOpacity = parseInt(document.getElementById("slider_map2").value, 10)/100 ;
   console.log("Opacity of hydrant: ", appState.hydrantOpacity);
+  appState.rankingBy = $('#rank_by')[0].checked;
+  console.log("Rank priority scores by: ", appState.rankingBy);
+
+
 };
 
 /**************** ============= Changes to Engines ==============  **********************/
@@ -76,13 +81,21 @@ var inputToCombi = function(){
   var ind = inputToNum(appState.industrialScore);
   var age = inputToNum(appState.hydrantScore);
   console.log("Combination to get from file:" +fir+ind+soc+age);
-  return ""+fir+ind+soc+age
+
+  var rank = appState.rankingBy; 
+  // if rank== True, ranks  by engine. if rank==False, ranks by across
+  if (rank){
+    return ""+fir+ind+soc+age
+  }else{
+    return ""+fir+ind+soc+age+"_PA"
+  }
+  
 };
 
 /* ============= Filters  ============== */
 var filterByScores = function(c,s){
   // if combination is "0000", don't filter
-  if(c!="0000"){
+  if(c!="0000" || c!="0000_PA"){
     map.setFilter('hydrants', ['==', ['get', c], s]);
   }
 };
@@ -92,7 +105,7 @@ var filterByEngine = function(eng){
 };
 
 var filterByBoth = function(c,s,eng){
-  if (c!="0000"){
+  if (c!="0000" || c!="0000_PA"){
     map.setFilter('hydrants', ["all",
       ['==', ['get', c], s],
       ['==', ['get', 'ENGINE_NUM'], eng]
@@ -122,7 +135,7 @@ var filterMap = function(c, includeScore, includeEngine){
 /* ============= Update map ============== */
 var updateMap = function(combination, opacity_val){
   // if the hydrants are plotted, remove theme
-  if (combination=="0000"){
+  if (combination=="0000" || combination=="0000_PA"){
     resetColours();
   }else{
     if (map.getLayer('hydrants')){ map.removeLayer('hydrants')};
@@ -202,6 +215,8 @@ var resetValues = function(){
   $('#cbox-input5').prop("checked", false);
   $('#cbox-input6').prop("checked", false);
   $('#text-input1').val('');
+  // $('#rank_by').prop("checked", true);
+  $('#rank_by').bootstrapToggle('on')
 
   // Push filter score Sliders back to 1
   slider.value=1;

@@ -361,6 +361,7 @@ body {
 .help-tip:hover p{
     display:block;
     transform-origin: 100% 0%;
+    z-index:999;
 
     -webkit-animation: fadeIn 0.3s ease-in-out;
     animation: fadeIn 0.3s ease-in-out;
@@ -391,6 +392,7 @@ body {
     border-bottom-color:#1E2021;
     right:10px;
     top:-12px;
+    z-index: 100;
 }
 
 .help-tip p:after{ /* Prevents the tooltip from being hidden */
