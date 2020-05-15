@@ -11,6 +11,10 @@ This is an application intended for the Philadelphia Fire Department to conduct 
 - Tooltips over both the engines and the hydrants to show individual information. 
 - Links for report available on the website.
 
+### Updates:
+Update 15 May 2020:
+- Added functionality to allow hydrants to be ranked either within engines or across the city
+
 ## Link to website:
 https://njxinran95.github.io/PhillyFire_App/
 
